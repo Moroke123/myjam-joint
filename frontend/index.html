@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyJam Joint - Audio Sharing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 MyJam Joint</h1>
+        <p class="subtitle">Share audio with friends in real-time</p>
+        
+        <div class="mode-selector">
+            <button class="mode-btn active" onclick="switchMode('host')">Host Session</button>
+            <button class="mode-btn" onclick="switchMode('join')">Join Session</button>
+        </div>
+        
+        <!-- HOST SECTION -->
+        <div id="host-section" class="section active">
+            <div class="input-group">
+                <label>Your Name</label>
+                <input type="text" id="host-name" placeholder="Enter your name" value="Host">
+            </div>
+            
+            <label>Session Type</label>
+            <div class="privacy-toggle">
+                <div class="privacy-option selected" onclick="selectPrivacy('public')">
+                    <div class="privacy-option-title">🌍 Public</div>
+                    <div class="privacy-option-desc">Anyone can discover & request to join</div>
+                </div>
+                <div class="privacy-option" onclick="selectPrivacy('private')">
+                    <div class="privacy-option-title">🔒 Private</div>
+                    <div class="privacy-option-desc">Only people with code can join</div>
+                </div>
+            </div>
+            
+            <button class="btn" onclick="createSession()">Create Session</button>
+            
+            <div id="host-active" style="display: none;">
+                <div class="session-info">
+                    <div style="text-align: center;">
+                        <span class="session-type-badge" id="session-badge">🌍 PUBLIC SESSION</span>
+                    </div>
+                    <p style="text-align: center; color: #666; margin: 15px 0 10px;">Session Code:</p>
+                    <div class="session-code" id="session-code">ABC123</div>
+                    <p style="text-align: center; color: #666; font-size: 14px;" id="code-description">Share this code or let people find you publicly</p>
+                </div>
+                
+                <div class="status connected">
+                    ✓ Session Active - <span id="participant-count">0</span> participant(s)
+                </div>
+                
+                <div class="audio-controls">
+                    <button class="control-btn play-btn" onclick="startAudio()">▶ Start Streaming</button>
+                    <button class="control-btn stop-btn" onclick="stopAudio()">■ Stop</button>
+                </div>
+                
+                <div class="participants">
+                    <h3 style="margin-bottom: 15px; color: #333;">Pending Requests:</h3>
+                    <div id="pending-list">
+                        <!-- Pending requests appear here -->
+                    </div>
+                    
+                    <h3 style="margin: 20px 0 15px; color: #333;">Connected:</h3>
+                    <div id="connected-list">
+                        <p style="color: #999; text-align: center;">No one connected yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- JOIN SECTION -->
+        <div id="join-section" class="section">
+            <div class="mode-selector" style="margin-bottom: 20px;">
+                <button class="mode-btn active" onclick="switchJoinMode('public')">Browse Public</button>
+                <button class="mode-btn" onclick="switchJoinMode('private')">Enter Code</button>
+            </div>
+            
+            <!-- PUBLIC SESSIONS -->
+            <div id="public-join" class="section active">
+                <h3 style="margin-bottom: 15px; color: #333;">Public Sessions</h3>
+                <div class="public-sessions" id="public-sessions-list">
+                    <p style="color: #999; text-align: center;">Loading public sessions...</p>
+                </div>
+            </div>
+            
+            <!-- PRIVATE JOIN -->
+            <div id="private-join" class="section">
+                <div class="input-group">
+                    <label>Your Name</label>
+                    <input type="text" id="guest-name" placeholder="Enter your name">
+                </div>
+                
+                <div class="input-group">
+                    <label>Session Code</label>
+                    <input type="text" id="join-code" placeholder="Enter 6-digit code" maxlength="6">
+                </div>
+                
+                <button class="btn" onclick="joinPrivateSession()">Join Session</button>
+            </div>
+            
+            <div id="guest-active" style="display: none;">
+                <div class="status waiting" id="guest-status">
+                    ⏳ Waiting for host approval...
+                </div>
+                
+                <div id="guest-connected" style="display: none;">
+                    <div class="status connected">
+                        ✓ Connected to session
+                    </div>
+                    <p style="text-align: center; color: #666; margin-top: 20px;">
+                        🎧 Listening to <span id="host-session-name">host</span>'s audio...
+                    </p>
+                    <audio id="remote-audio" autoplay controls style="width: 100%; margin-top: 15px;"></audio>
+                </div>
+            </div>
+        </div>
+        
+        <div class="note">
+            <strong>Note:</strong> Real-time audio sharing with WebRTC. Make sure to allow audio permissions when prompted.
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

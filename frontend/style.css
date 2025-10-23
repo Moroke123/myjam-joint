@@ -1,0 +1,327 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+h1 {
+    color: #667eea;
+    margin-bottom: 10px;
+    font-size: 2em;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.mode-selector {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.mode-btn {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #667eea;
+    background: white;
+    color: #667eea;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.mode-btn:hover {
+    background: #667eea;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.mode-btn.active {
+    background: #667eea;
+    color: white;
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.3s;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: 600;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.privacy-toggle {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.privacy-option {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+}
+
+.privacy-option:hover {
+    border-color: #667eea;
+}
+
+.privacy-option.selected {
+    border-color: #667eea;
+    background: #f0f4ff;
+}
+
+.privacy-option-title {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+.privacy-option-desc {
+    font-size: 12px;
+    color: #666;
+}
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn:hover {
+    background: #5568d3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.session-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.session-code {
+    font-size: 24px;
+    font-weight: bold;
+    color: #667eea;
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    margin: 10px 0;
+    letter-spacing: 3px;
+}
+
+.session-type-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.badge-public {
+    background: #28a745;
+    color: white;
+}
+
+.badge-private {
+    background: #dc3545;
+    color: white;
+}
+
+.status {
+    text-align: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.status.connected {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.waiting {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.participants {
+    margin-top: 20px;
+}
+
+.participant {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.participant-name {
+    font-weight: 600;
+}
+
+.participant-actions button {
+    padding: 6px 12px;
+    margin-left: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.approve-btn {
+    background: #28a745;
+    color: white;
+}
+
+.decline-btn, .kick-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.audio-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.control-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.play-btn {
+    background: #28a745;
+    color: white;
+}
+
+.stop-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.note {
+    background: #e7f3ff;
+    border-left: 4px solid #2196F3;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+.public-sessions {
+    margin-top: 20px;
+}
+
+.session-card {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.session-details h4 {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.session-details p {
+    color: #666;
+    font-size: 14px;
+}
+
+.join-session-btn {
+    padding: 8px 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
